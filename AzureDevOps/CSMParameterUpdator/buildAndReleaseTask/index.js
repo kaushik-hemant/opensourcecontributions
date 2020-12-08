@@ -39,7 +39,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tl = require("azure-pipelines-task-lib/task");
 function run() {
     return __awaiter(this, void 0, void 0, function () {
-        var inputString;
+        var inputString, filepath, source;
         return __generator(this, function (_a) {
             try {
                 inputString = tl.getInput('samplestring', true);
@@ -48,6 +48,10 @@ function run() {
                     return [2 /*return*/];
                 }
                 console.log('Hello', inputString);
+                filepath = tl.getPathInput('parameterfile', true);
+                console.log('Path', filepath);
+                source = tl.getInput('source', true);
+                console.log('Source', source);
             }
             catch (err) {
                 tl.setResult(tl.TaskResult.Failed, err.message);

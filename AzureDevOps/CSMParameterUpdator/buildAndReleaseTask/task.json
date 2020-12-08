@@ -2,25 +2,47 @@
     "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
     "id": "d8ca0935-18a4-480f-9a3b-3bfe141caa7d",
     "name": "csmfileupdator",
-    "friendlyName": "csmfileupdator",
+    "friendlyName": "Update Azure Rresource Manager parameter values",
     "description": "csmfileupdator",
     "helpMarkDown": "",
     "category": "Utility",
     "author": "hem-sharma",
     "version": {
         "Major": 0,
-        "Minor": 1,
+        "Minor": 2,
         "Patch": 0
     },
     "instanceNameFormat": "Echo $(samplestring)",
     "inputs": [{
-        "name": "samplestring",
-        "type": "string",
-        "label": "Sample String",
-        "defaultValue": "",
-        "required": true,
-        "helpMarkDown": "A sample string"
-    }],
+            "name": "samplestring",
+            "type": "string",
+            "label": "Sample String",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "A sample string"
+        },
+        {
+            "name": "parameterfile",
+            "type": "filePath",
+            "label": "CSM parameter file path",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Chose source file which needs to updated."
+        },
+        {
+            "name": "source",
+            "type": "radio",
+            "label": "Mapping sources",
+            "defaultValue": "Pipeline Variables",
+            "required": true,
+            "helpMarkDown": "Chose source file which needs to updated.",
+            "options": {
+                "Pipeline Variables or Variable Groups": "pipeline",
+                "Azure Key vault": "kv",
+                "Azure App configurations": "appconfig"
+            }
+        }
+    ],
     "execution": {
         "Node10": {
             "target": "index.js"
